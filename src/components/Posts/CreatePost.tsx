@@ -1,7 +1,9 @@
 import React, { Component } from "react"
+import { Form, ModalHeader, Button, Input, Modal, ModalBody } from 'reactstrap';
 
 type AuthFields = {
-
+    sessionToken: string
+    updateToken: (token: string) => void
 }
 
 type PostFields = {
@@ -30,17 +32,32 @@ export default class CreatePost extends Component<AuthFields, PostFields> {
             }),
             headers: new Headers({
                 "Content-Type": "application/json",
-                "Authorization": `props.sessionToken`
+                "Authorization": `${this.props.sessionToken}`
             })
         })
         .then(response => response.json())
+        .then(json => {
+            console.log(json)
+            this.setState({
+                body: "",
+                likes: 0
+            })
+        })
+        .catch(err => console.log(err))
     }
 
     render() {
         return(
             <div>
-                <h1>Create a new Post</h1>
-                <p>What's on your mind?</p>
+                <Modal isOpen={true}>
+                    <ModalHeader id="submitHeader">What's On Your Mind?</ModalHeader>
+                    <ModalBody>
+                        <Form className="newPost" onSubmit={this.newPost}>
+                            <Input required type='textarea' id="postBody" placeholder="Type Here" value={this.state.body} onChange={(e) => this.setState({body: (e.target.value)})} />
+                            <Button id="submitPostBtn" className="btn-lg btn-dark btn-block" type='submit'>Post</Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
             </div>
         )
     }

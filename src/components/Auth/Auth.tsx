@@ -17,7 +17,7 @@ type Props = {
 }
 
 export default class Auth extends Component <Props, AuthFields> {
-    constuctor(props: AuthFields) {
+    constructor(props: Props) {
         super(props)
         this.state = {
             email: "",
@@ -42,15 +42,15 @@ export default class Auth extends Component <Props, AuthFields> {
         })
     }
 
-    const logsignbut = () => {
+    logsignbut = () => {
         return !this.state.login ? 'Go Back To Sign In' : 'Sign Up'
     }
     
-    const logRegLabel = () => {
+    logRegLabel = () => {
         return !this.state.login ? 'Register A New User' : 'Sign In'
     }
     
-    const submitBut = () => {
+    submitBut = () => {
         return !this.state.login ? 'Create User' : 'Login'
     }
 
@@ -80,7 +80,13 @@ export default class Auth extends Component <Props, AuthFields> {
         </div>
     ) : (
         <div>
-
+            <label htmlFor="email">Email:</label>
+            <br/>
+            <input required type='email' id="email" placeholder="Ex: rroush@gmail.com" value={this.state.email} onChange={(e) => this.setState({email: (e.target.value)})} />
+            <br/>
+            <label htmlFor="password">Password:</label>
+            <br/>
+            <input required type='password' id="password" placeholder="DO NOT SHARE" value={this.state.password} onChange={(e) => this.setState({password: (e.target.value)})} />
         </div>
     )
 
@@ -117,6 +123,12 @@ export default class Auth extends Component <Props, AuthFields> {
             })
         })
         .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            this.props.updateToken(json.sessionToken)
+            
+        })
+        .catch(err => console.log(err))
     }
 
     render() {
@@ -127,7 +139,11 @@ export default class Auth extends Component <Props, AuthFields> {
                     password={this.state.password}
                     firstName={this.state.firstName}
                     lastName={this.state.lastName}
+                    location={this.state.location}
                     login={this.state.login}
+                    signupFields={this.signupFields}
+                    logsignbut={this.logsignbut}
+                    loginToggle={this.loginToggle}
                     handleSubmit={this.handleSubmit}
                     logRegLabel={this.logRegLabel}
                     submitBut={this.submitBut}
