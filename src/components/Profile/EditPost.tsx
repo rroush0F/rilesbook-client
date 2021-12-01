@@ -3,8 +3,9 @@ import { Form, ModalHeader, Button, Input, Modal, ModalBody } from 'reactstrap';
 
 type AuthFields = {
     sessionToken: string
-    updateToken: (token: string) => void
     editedPost: PostFields
+    updateOff: () => void
+    getMyPosts: () => void
 }
 
 type PostFields = {
@@ -40,6 +41,10 @@ export default class UpdatePost extends Component<AuthFields, PostFields> {
             })
         })
         .then(response => response.json())
+        .then(json => {
+            this.props.updateOff()
+            this.props.getMyPosts()
+        })
     } 
 
 

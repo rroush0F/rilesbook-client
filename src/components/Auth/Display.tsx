@@ -29,7 +29,7 @@ const styles = {
 
     login: { 
         backgroundSize: "cover",
-        backgroundColor: "rgba(231, 231, 219, 0.8)",
+        backgroundColor: "rgba(231, 231, 219)",
         margin: "auto",
         width: "50%",
         border: "3px solid black",

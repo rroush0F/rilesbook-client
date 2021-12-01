@@ -104,9 +104,10 @@ export default class Comments extends Component<AuthFields, CommentState> {
             console.log(comment.id)
                 return(
                     <Card key={key}>
-                        <CardBody>
-                            <CardText>{comment.body}</CardText>
-                            <CardText>Likes: {comment.likes}</CardText>
+                        <CardBody className="commentBody">
+                            <CardText className="commentText">{comment.body}</CardText>
+                            <CardText className="commentText">Likes: {comment.likes}</CardText>
+                            <button>Like👍</button>
                         </CardBody>
                     </Card>
                 )

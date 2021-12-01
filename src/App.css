@@ -20,12 +20,19 @@ button {
   border-color: solid black 2px;
 }
 
+
+.commentText {
+  font-size: 10px;
+}
+
 .card {
-  border: solid black 1.25px;
-  background-color: lightblue;
+  border: solid black 1.35px;
+  background-color: white;
   font-size: 14px;
-  width: 40%;
-  margin: 2rem; 
+  width: 45%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .editBtn{
@@ -44,13 +51,17 @@ button {
 
 .navbar{
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  float: left;
-  padding-top: 10px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   text-decoration: none;
   width: 100%;
   background-color: black;
   color: white;
-  height: 100%;
+}
+
+.navItem{
+  list-style-type: none;
+  float: left;
+  right: 0px;
+  position: relative;
 }

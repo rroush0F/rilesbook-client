@@ -43,15 +43,17 @@ export default class NavBarRB extends React.Component<AuthFields, NavOpen> {
             <div>
                 <Router>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">RilesBook</NavbarBrand>
+                    <NavbarBrand href="/timeline">
+                        RilesBook
+                    </NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
+                        <Nav className="ms-auto" navbar>
+                            <NavItem className="navItem">
                                 <Nav>
                                      <Link to="/timeline">Timeline</Link>
                                 </Nav>
                             </NavItem>
-                            <NavItem>
+                            <NavItem className="navItem">
                                 <Nav> 
                                      <Link to="/myposts">My Profile</Link>
                                 </Nav>
@@ -67,7 +69,7 @@ export default class NavBarRB extends React.Component<AuthFields, NavOpen> {
                 </Navbar>
                 <Routes>
                         <Route path="/timeline" element={<GetAllPosts sessionToken={this.props.sessionToken} />}/>
-                         <Route path="/myposts" element={<Posts sessionToken={this.props.sessionToken} />}/>
+                        <Route path="/myposts" element={<Posts sessionToken={this.props.sessionToken} />}/>
                         {/* <Route path="/admin" element={<Admin />}/> */}
                 </Routes>
                 </Router>

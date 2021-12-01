@@ -21,7 +21,7 @@ export default class CreateComment extends Component<AuthFields, CommentFields> 
 
     createComment = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/comment/create/`, {
+        fetch(`http://localhost:3000/comment/new/`, {
             method: "POST",
             body: JSON.stringify({
                 comment: {

@@ -1,8 +1,10 @@
 import React, { Component } from "react"
 import { Form, ModalHeader, Button, Input, Modal, ModalBody } from 'reactstrap';
+import getAllPosts from  './GetAllPosts'
 
 type AuthFields = {
     sessionToken: string
+    getAllPosts: () => void
 }
 
 type PostFields = {
@@ -41,6 +43,7 @@ export default class CreatePost extends Component<AuthFields, PostFields> {
                 body: "",
                 likes: 0
             })
+        this.props.getAllPosts()
         })
         .catch(err => console.log(err))
     }

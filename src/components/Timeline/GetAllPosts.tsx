@@ -48,7 +48,7 @@ export default class GetAllPosts extends Component<AuthFields, PostFields> {
     render(){
         return(
             <div>
-                <DisplayTimeline posts={this.state.posts} sessionToken={this.props.sessionToken}/>
+                <DisplayTimeline posts={this.state.posts} sessionToken={this.props.sessionToken} getAllPosts={this.getAllPosts}/>
             </div>
         )
     }

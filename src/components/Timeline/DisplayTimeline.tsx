@@ -3,19 +3,15 @@ import Comments from "./Comments";
 import CreateComment from "./CreateComment";
 import {Card, CardBody, CardSubtitle, CardText, Button} from 'reactstrap'
 import { userInfo } from "os";
+import Radium from "radium";
 import CreatePost from "./CreatePost";
 
 type TimelineProps = {
     posts: PostFields[]
-    // comments: CommentFields[]
     sessionToken: string
+    getAllPosts: () => void
 }
 
-// type CommentFields = {
-//     body: string
-//     likes: string
-//     id: string
-// }
 
 type PostFields = {
     body: string
@@ -23,25 +19,37 @@ type PostFields = {
     id: string
 }
 
+const styles = {
+
+    timelinePage: {
+        backgroundColor: "lightblue",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
+    }
+
+}
+
+
 const DisplayTimeline = (props: TimelineProps) => {
     
     return(
         <>
-            <CreatePost sessionToken={props.sessionToken}/>
-        <div>
+            <CreatePost sessionToken={props.sessionToken} getAllPosts={props.getAllPosts}/>
+        <div style={styles.timelinePage} id="loginPage">
             <h2 className="myPostHeader">The Timeline:</h2>
             {props.posts.map((post, key) => {
             console.log(post.id)
                 return(
                     <Card key={key}>
-                        <CardBody>
+                        <CardBody className="postBody">
                             {/* <h5>{props.user.firstName}{props.user.lastName}</h5> */}
-                            <CardText>{post.body}</CardText>
+                            <CardText><strong>{post.body}</strong></CardText>
                             <CardText>Likes: {post.likes}</CardText>
-                            <Comments postId={post.id} sessionToken={props.sessionToken}/>
+                            <button>Like👍</button>
                             <CreateComment sessionToken={props.sessionToken}/> 
-                            {/* <Button className="btn btn-warning editBtn" type="button" onClick={() => {props.editUpdateComment(char); props.updateOn()}}>Edit Character</Button>
-                            <Button className="btn btn-danger deleteBtn" type="button" onClick={() => {deleteComment(char.id)}}>Delete Character</Button> */}
+                            <hr />
+                            <p>Comments:</p>
+                            <Comments postId={post.id} sessionToken={props.sessionToken}/>
                         </CardBody>
                     </Card>
                 )

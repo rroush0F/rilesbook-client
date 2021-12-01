@@ -1,7 +1,7 @@
+import { throws } from "assert"
 import React, { Component } from "react"
-import UpdatePost from "./EditPost"
 import DisplayProfile from "./DisplayProfile"
-import editUpdatePost from "./EditPost"
+import UpdatePost from "./EditPost"
 
 type AuthFields = {
     sessionToken: string
@@ -80,8 +80,8 @@ getMyPosts = () => {
     .catch(error => console.log(error))
 }
 
-    deleteMyPost = () => {
-        fetch(`http://localhost:3000/post/delete/${this.props}`, {
+    deleteMyPost = (id: string) => {
+        fetch(`http://localhost:3000/post/delete/${id}`, {
             method: "DELETE",
             headers: new Headers({
                 "Content-Type": "application/json",
@@ -91,6 +91,7 @@ getMyPosts = () => {
         .then(response => response.json())
         .then(json => {
             console.log(json)
+            this.getMyPosts()
         })
         .catch (error => console.log(error))
     }
@@ -99,6 +100,7 @@ getMyPosts = () => {
         return(
             <div>
                 <DisplayProfile posts={this.state.posts} createOn={this.createOn} updateOn={this.updateOn} editUpdatePost={this.editUpdatePosts} deleteMyPost={this.deleteMyPost}/>
+                {this.state.updateActive ?<UpdatePost sessionToken={this.props.sessionToken} editedPost={this.state.updatedPost} updateOff={this.updateOff} getMyPosts={this.getMyPosts}/> : null}
             </div>
         )
     }
