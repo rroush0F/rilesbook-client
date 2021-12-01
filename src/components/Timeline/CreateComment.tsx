@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Card, CardBody, Col, Container, Form, Input, Row } from 'reactstrap';
+import { Form, ModalHeader, Button, Input, Modal, ModalBody } from 'reactstrap';
 
 type AuthFields = {
     sessionToken: string
-    updateToken: (token: string) => void
 }
 
 type CommentFields = {
@@ -49,21 +48,14 @@ export default class CreateComment extends Component<AuthFields, CommentFields> 
     render(){
         return(
             <div>
-                <Container>
-                    <Row>
-                        <Col>
-                            <Card>
-                                <CardBody>
-                                    <Form onSubmit={this.createComment}>
-                                        <div className="commentCreate">
-                                            <Input required type='textarea' id="postBody" placeholder="Type Here" value={this.state.body} onChange={(e) => this.setState({body: (e.target.value)})} />
-                                        </div>
-                                    </Form>
-                                </CardBody>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
+                <Modal isOpen={true}>
+                    <ModalBody>
+                        <Form className="newPost" onSubmit={this.createComment}>
+                            <Input required type='text' id="commentBody" placeholder="Respond" value={this.state.body} onChange={(e) => this.setState({body: (e.target.value)})} />
+                            <Button id="submitPostBtn" className="btn-lg btn-dark btn-block" type='submit'>Comment</Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
             </div>
         )
     }

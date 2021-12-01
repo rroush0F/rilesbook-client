@@ -1,7 +1,7 @@
 import React, { Component } from "react"
+import Posts from "../Profile/Posts"
 import CreatePost from "./CreatePost"
-import UpdatePost from "./EditPost"
-import DisplayPosts from "./DisplayPosts"
+import DisplayTimeline from "./DisplayTimeline"
 
 type AuthFields = {
     sessionToken: string
@@ -14,7 +14,7 @@ type PostFields = {
     posts: []
 }
 
-export default class Posts extends Component<AuthFields, PostFields> {
+export default class GetAllPosts extends Component<AuthFields, PostFields> {
     constructor(props: AuthFields){
         super(props)
         this.state = {
@@ -22,11 +22,13 @@ export default class Posts extends Component<AuthFields, PostFields> {
             body: "",
             likes: 0,
             id: ""
+        }
     }
-}
-
+    componentDidMount() {
+        this.getAllPosts()
+    }
     getAllPosts = () => {
-        fetch(`http://localhost:3000/post/myposts`, {
+        fetch(`http://localhost:3000/post/timeline`, {
             method: "GET",
             headers: new Headers({
                 "Content-Type": "application/json",
@@ -39,22 +41,15 @@ export default class Posts extends Component<AuthFields, PostFields> {
             this.setState({
                 posts: json
             })
+            console.log(this.state.posts)
         })
         .catch(error => console.log(error))
     }
-
-    deleteMyPost = () => {
-        fetch(`http://localhost:3000/post/delete/`, {
-            method: "DELETE",
-            headers: new Headers({
-                "Content-Type": "application/json",
-                "Authorization": `${this.props.sessionToken}`
-            })
-        })
-        .then(response => response.json())
-        .then(json => {
-            console.log(json)
-        })
-        .catch (error => console.log(error))
+    render(){
+        return(
+            <div>
+                <DisplayTimeline posts={this.state.posts} sessionToken={this.props.sessionToken}/>
+            </div>
+        )
     }
 }

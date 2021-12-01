@@ -21,17 +21,21 @@ type AuthFields = {
 const styles = {
     
     loginPage: {
-
+        backgroundColor: "lightblue",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        height: "100vh",
     },
 
     login: { 
         backgroundSize: "cover",
-        backgroundColor: "rgba(231, 231, 219, 0.6)",
+        backgroundColor: "rgba(231, 231, 219, 0.8)",
         margin: "auto",
         width: "50%",
         border: "3px solid black",
         borderRadius: "12px",
         padding: "20px",
+        paddingTop: "500px",
         top: "50%",
         transform: "translate(0, -50%)"
     },
@@ -53,17 +57,17 @@ const Display = (props: AuthFields) => {
     return (
         <div style={styles.loginPage} id="loginPage">
             <div style={styles.login} className="loginPage">
-                <form id="Login" onSubmit={props.handleSubmit}>
+                <form id="login" onSubmit={props.handleSubmit}>
                     <img src={RBlogo} alt="RBlogoauth" id="rblogo"/>
                     <hr style={styles.hr1} />
                     <h1> {props.logRegLabel()}</h1>
                     <hr style={styles.hr2} />
                     {props.signupFields()}
                     <br/>
-                    <button type="submit" className="btn-lg btn-dark btn-block">{props.submitBut()} </button>
+                    <Button type="submit" className="btn-lg btn-dark btn-block">{props.submitBut()} </Button>
                     <br/>
                     <br/>
-                    <button className="btn-lg btn-danger btn-block" onClick={props.loginToggle}>{props.logsignbut()}</button>
+                    <Button className="btn-lg btn-danger btn-block" onClick={props.loginToggle}>{props.logsignbut()}</Button>
                 </form>
             </div>
         </div>

@@ -3,7 +3,6 @@ import { Form, ModalHeader, Button, Input, Modal, ModalBody } from 'reactstrap';
 
 type AuthFields = {
     sessionToken: string
-    updateToken: (token: string) => void
 }
 
 type PostFields = {

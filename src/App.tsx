@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import './App.css';
 import Auth from './components/Auth/Auth';
+import NavBarRB from './site/Navbar';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 type AuthToken = {
   admin: boolean
-  sessionToken: string | undefined
+  sessionToken: string | undefined 
 }
+
 
 export default class App extends Component<{}, AuthToken> {
   constructor(props: AuthToken) {
@@ -17,28 +19,30 @@ export default class App extends Component<{}, AuthToken> {
     }
   }
 
-  const updateLocalStorage = (newToken) => {
+  updateLocalStorage = (newToken: string) => {
     localStorage.setItem('token', newToken);
-    setSessionToken(newToken);
+    this.setState({
+      sessionToken: newToken
+    })
   };
 
-  const clearLocalStorage = () =>{
+  clearLocalStorage = () =>{
     localStorage.clear();
-    setSessionToken(undefined)
+      this.setState({
+        sessionToken: undefined
+      })
   }
 
-  const viewConductor = () => {
-    return sessionToken !== undefined ?
-    null :
-    <Auth updateLocalStorage />
+  viewConductor = () => {
+    return this.state.sessionToken !== undefined ?
+    <NavBarRB admin={this.state.admin} sessionToken={this.state.sessionToken} clearLocalStorage={this.clearLocalStorage} /> :
+    <Auth updateLocalStorage={this.updateLocalStorage} clearLocalStorage={this.clearLocalStorage}/>
   }
 
   render(){
     return(
       <div>
-        <Router>
-          {this.viewConductor()}
-        </Router>
+          {this.viewConductor()}   
       </div>
     )
   }

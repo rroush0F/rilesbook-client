@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Display from './Display'
+import "./Auth.css"
 
 type AuthFields = {
     email: string,
@@ -12,8 +13,8 @@ type AuthFields = {
 };
 
 type Props = {
-    updateToken: (token: string) => void
-    updateLocalStorage: () => void
+    updateLocalStorage: (newToken: string) => void
+    clearLocalStorage: () => void
 }
 
 export default class Auth extends Component <Props, AuthFields> {
@@ -58,11 +59,11 @@ export default class Auth extends Component <Props, AuthFields> {
     signupFields = () => !this.state.login ?
     (
         <div>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email"><strong>Email:</strong></label>
             <br/>
             <input required type='email' id="email" placeholder="Ex: rroush@gmail.com" value={this.state.email} onChange={(e) => this.setState({email: (e.target.value)})} />
             <br/>
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password"><strong>Password:</strong></label>
             <br/>
             <input required type='password' id="password" placeholder="DO NOT SHARE" value={this.state.password} onChange={(e) => this.setState({password: (e.target.value)})} />
             <br/>
@@ -80,11 +81,11 @@ export default class Auth extends Component <Props, AuthFields> {
         </div>
     ) : (
         <div>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email"><strong>Email:</strong></label>
             <br/>
             <input required type='email' id="email" placeholder="Ex: rroush@gmail.com" value={this.state.email} onChange={(e) => this.setState({email: (e.target.value)})} />
             <br/>
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password"><strong>Password:</strong></label>
             <br/>
             <input required type='password' id="password" placeholder="DO NOT SHARE" value={this.state.password} onChange={(e) => this.setState({password: (e.target.value)})} />
         </div>
@@ -125,7 +126,7 @@ export default class Auth extends Component <Props, AuthFields> {
         .then(response => response.json())
         .then(json => {
             console.log(json);
-            this.props.updateToken(json.sessionToken)
+            this.props.updateLocalStorage(json.sessionToken)
             
         })
         .catch(err => console.log(err))

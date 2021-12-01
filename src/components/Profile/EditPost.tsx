@@ -23,7 +23,8 @@ export default class UpdatePost extends Component<AuthFields, PostFields> {
     }
 }
 
-    editPost = (e: React.FormEvent<HTMLFormElement> ) => {
+    editUpdatePost = (e: React.FormEvent<HTMLFormElement> ) => {
+        console.log(this.props.editedPost)
         e.preventDefault();
         fetch(`http://localhost:3000/post/update/${this.props.editedPost.id}`, {
             method: "PUT",
@@ -47,7 +48,7 @@ export default class UpdatePost extends Component<AuthFields, PostFields> {
             <Modal isOpen={true}>
                 <ModalHeader>Edit Your Post</ModalHeader>
                     <ModalBody>
-                        <Form onSubmit={this.editPost}>
+                        <Form onSubmit={this.editUpdatePost}>
                         <Input required type='textarea' id="postBody" placeholder="Type Here" value={this.state.body} onChange={(e) => this.setState({body: (e.target.value)})} />
                         <Button id="submitPostBtn" className="btn-lg btn-dark btn-block" type='submit'>Update Post</Button>
                         </Form>
