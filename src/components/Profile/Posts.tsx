@@ -1,5 +1,6 @@
 import { throws } from "assert"
 import React, { Component } from "react"
+import APIURL from "../../helpers/environment"
 import DisplayProfile from "./DisplayProfile"
 import UpdatePost from "./EditPost"
 
@@ -63,7 +64,7 @@ updateOff = () => {
 
 
 getMyPosts = () => {
-    fetch(`http://localhost:3000/post/myposts`, {
+    fetch(`${APIURL}/post/myposts`, {
         method: "GET",
         headers: new Headers({
             "Content-Type": "application/json",
@@ -81,7 +82,7 @@ getMyPosts = () => {
 }
 
     deleteMyPost = (id: string) => {
-        fetch(`http://localhost:3000/post/delete/${id}`, {
+        fetch(`${APIURL}/post/delete/${id}`, {
             method: "DELETE",
             headers: new Headers({
                 "Content-Type": "application/json",
