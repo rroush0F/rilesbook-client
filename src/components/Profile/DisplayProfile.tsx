@@ -2,6 +2,7 @@ import React from "react";
 import {Card, CardBody, CardText, Button} from 'reactstrap'
 import Radium from "radium";
 
+
 type ProfileProps = {
     posts: PostFields[]
     createOn: () => void

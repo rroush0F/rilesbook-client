@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Form, ModalHeader, Button, Input, Modal, ModalBody } from 'reactstrap';
 import getAllPosts from  './GetAllPosts'
+import APIURL from '../../helpers/environment'
 
 type AuthFields = {
     sessionToken: string
@@ -23,7 +24,7 @@ export default class CreatePost extends Component<AuthFields, PostFields> {
 
     newPost = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/post/create`, {
+        fetch(`${APIURL}/post/create`, {
             method: 'POST',
             body: JSON.stringify({
                 post: {

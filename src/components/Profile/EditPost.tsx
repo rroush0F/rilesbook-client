@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, ModalHeader, Button, Input, Modal, ModalBody } from 'reactstrap';
+import APIURL from '../../helpers/environment'
 
 type AuthFields = {
     sessionToken: string
@@ -27,7 +28,7 @@ export default class UpdatePost extends Component<AuthFields, PostFields> {
     editUpdatePost = (e: React.FormEvent<HTMLFormElement> ) => {
         console.log(this.props.editedPost)
         e.preventDefault();
-        fetch(`http://localhost:3000/post/update/${this.props.editedPost.id}`, {
+        fetch(`${APIURL}/post/update/${this.props.editedPost.id}`, {
             method: "PUT",
             body: JSON.stringify({
                 post: {

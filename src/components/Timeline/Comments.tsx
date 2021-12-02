@@ -3,6 +3,7 @@ import CreateComment from "./CreateComment"
 import DisplayTimeline from "../Timeline/DisplayTimeline"
 import EditComment from "./EditComment"
 import {Card, CardBody, CardSubtitle, CardText, Button} from 'reactstrap'
+import APIURL from '../../helpers/environment'
 
 type AuthFields = {
     sessionToken: string
@@ -64,7 +65,7 @@ export default class Comments extends Component<AuthFields, CommentState> {
     }
 
     getAllComments = () => {
-        fetch(`http://localhost:3000/comment/all/${this.props.postId}`, {
+        fetch(`${APIURL}/comment/all/${this.props.postId}`, {
             method: "GET",
             headers: new Headers({
                 "Content-Type": "application/json",
@@ -83,7 +84,7 @@ export default class Comments extends Component<AuthFields, CommentState> {
     }
 
     deleteAComment = () => {
-        fetch(`http://localhost:3000/comment/delete/${this.state.comments.id}`, {
+        fetch(`${APIURL}/comment/delete/${this.state.comments.id}`, {
             method: "DELETE",
             headers: new Headers({
                 "Content-Type": "application/json",

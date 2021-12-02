@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Display from './Display'
 import "./Auth.css"
+import APIURL from '../../helpers/environment'
 
 type AuthFields = {
     email: string,
@@ -113,8 +114,8 @@ export default class Auth extends Component <Props, AuthFields> {
         }
 
         let url = this.state.login ?
-        `http://localhost:3000/user/login` :
-        `http://localhost:3000/user/register`;
+        `${APIURL}/user/login` :
+        `${APIURL}/user/register`;
 
         fetch(url, {
             method: 'POST',

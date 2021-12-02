@@ -6,6 +6,7 @@ import { userInfo } from "os";
 import Radium from "radium";
 import CreatePost from "./CreatePost";
 
+
 type TimelineProps = {
     posts: PostFields[]
     sessionToken: string

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, ModalHeader, Button, Input, Modal, ModalBody } from 'reactstrap';
+import APIURL from '../../helpers/environment'
 
 type AuthFields = {
     sessionToken: string
@@ -21,7 +22,7 @@ export default class CreateComment extends Component<AuthFields, CommentFields> 
 
     createComment = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/comment/new/`, {
+        fetch(`${APIURL}/comment/new/`, {
             method: "POST",
             body: JSON.stringify({
                 comment: {
