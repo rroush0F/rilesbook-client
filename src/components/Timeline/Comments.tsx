@@ -65,7 +65,7 @@ export default class Comments extends Component<AuthFields, CommentState> {
     }
 
     getAllComments = () => {
-        fetch(`${APIURL}/comment/all/${this.props.postId}`, {
+        fetch(`http://localhost:3000/comment/all/${this.props.postId}`, {
             method: "GET",
             headers: new Headers({
                 "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export default class Comments extends Component<AuthFields, CommentState> {
     }
 
     deleteAComment = () => {
-        fetch(`${APIURL}/comment/delete/${this.state.comments.id}`, {
+        fetch(`http://localhost:3000/comment/delete/${this.state.comments.id}`, {
             method: "DELETE",
             headers: new Headers({
                 "Content-Type": "application/json",

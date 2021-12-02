@@ -28,7 +28,7 @@ export default class UpdatePost extends Component<AuthFields, PostFields> {
     editUpdatePost = (e: React.FormEvent<HTMLFormElement> ) => {
         console.log(this.props.editedPost)
         e.preventDefault();
-        fetch(`${APIURL}/post/update/${this.props.editedPost.id}`, {
+        fetch(`http://localhost:3000/post/update/${this.props.editedPost.id}`, {
             method: "PUT",
             body: JSON.stringify({
                 post: {

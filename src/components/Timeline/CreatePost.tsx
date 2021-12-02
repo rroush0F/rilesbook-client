@@ -24,7 +24,7 @@ export default class CreatePost extends Component<AuthFields, PostFields> {
 
     newPost = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch(`${APIURL}/post/create`, {
+        fetch(`http://localhost:3000/post/create`, {
             method: 'POST',
             body: JSON.stringify({
                 post: {

@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import APIURL from "../../helpers/environment"
 import Posts from "../Profile/Posts"
 import CreatePost from "./CreatePost"
 import DisplayTimeline from "./DisplayTimeline"
@@ -29,7 +28,7 @@ export default class GetAllPosts extends Component<AuthFields, PostFields> {
         this.getAllPosts()
     }
     getAllPosts = () => {
-        fetch(`${APIURL}/post/timeline`, {
+        fetch(`http://localhost:3000/post/timeline`, {
             method: "GET",
             headers: new Headers({
                 "Content-Type": "application/json",

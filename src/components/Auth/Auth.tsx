@@ -114,8 +114,8 @@ export default class Auth extends Component <Props, AuthFields> {
         }
 
         let url = this.state.login ?
-        `${APIURL}/user/login` :
-        `${APIURL}/user/register`;
+        `http://localhost:3000/user/login` :
+        `http://localhost:3000/user/register`;
 
         fetch(url, {
             method: 'POST',
